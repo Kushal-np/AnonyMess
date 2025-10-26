@@ -11,7 +11,7 @@ export interface Message{
     createdAt:string ; 
 }
 
-export interface Notificaion{
+export interface Notification{
     _id:string ; 
     user:string ; 
     message:string ; 

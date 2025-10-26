@@ -1,15 +1,16 @@
-import { User, Message, Notificaion, LoginResponse, MessageResponse } from '../types';
+import type { User, Message, Notification, LoginResponse, MessageResponse } from '../types';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+const API_BASE = 'http://localhost:5000';
 
 class ApiClient {
   private async request<T>(
     endpoint: string,
     options?: RequestInit
   ): Promise<T> {
+    console.log("Hello world")
     const response = await fetch(`${API_BASE}${endpoint}`, {
       ...options,
-      credentials: 'include',
+      credentials: "include",
       headers: {
         'Content-Type': 'application/json',
         ...options?.headers,
@@ -42,8 +43,9 @@ class ApiClient {
     });
   }
 
-  async getMessages(): Promise<MessageResponse> {
-    return this.request<MessageResponse>('/message/lol/1');
+  async getMessages(userId:string): Promise<MessageResponse> {
+    return this.request<MessageResponse>(`/message/lol/${userId}`);
+    console.log("This is " , userId)
   }
 
   async getNotifications(): Promise<Notification[]> {

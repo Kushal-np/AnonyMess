@@ -1,12 +1,13 @@
 import {useMutation , useQuery , useQueryClient} from "@tanstack/react-query"
 import { apiClient } from "../api/client"
+import { useAppSelector } from "./useAppSelector";
 
 export const useMessages = () =>{
     const queryClient = useQueryClient();
-
+    const user = useAppSelector((state) => state.auth.user)
     const {data,isLoading,error} = useQuery({
         queryKey:['messages'] , 
-        queryFn:()=>apiClient.getMessages(),
+        queryFn:()=>apiClient.getMessages(user!._id),
         refetchInterval:5000,
     })
 
