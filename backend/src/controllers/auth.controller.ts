@@ -34,6 +34,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
 export const getMe = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
+        console.log("Hello")
         const userId = req.userId;
         if (!userId) {
             res.status(401).json({
